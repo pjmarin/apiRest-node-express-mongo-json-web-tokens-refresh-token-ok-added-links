@@ -12,6 +12,8 @@ import linkRouter from "./routes/link.route.js";
 
 const app = express();
 
+app.use(cors({ origin:true, credentials:true }));
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended: true, limit: '3mb'}))
@@ -28,8 +30,6 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/links", linkRouter);
 
 app.use(express.static("public"));
-
-app.use(cors({ origin:true, credentials:true }))
 
 app.use(function(err, req, res, next) {
   console.error("err.stack", err.stack);
